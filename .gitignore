@@ -1,0 +1,11 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+frontend/TravelAIChatApp/node_modules/
+
+# Expo
+frontend/TravelAIChatApp/.expo/
+frontend/TravelAIChatApp/dist/
+frontend/TravelAIChatApp/web-build/
+frontend/TravelAIChatApp/expo-env.d.ts
+backend/app/env/
