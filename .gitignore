@@ -9,3 +9,4 @@ frontend/TravelAIChatApp/dist/
 frontend/TravelAIChatApp/web-build/
 frontend/TravelAIChatApp/expo-env.d.ts
 backend/app/env/
+backend/app/.env
