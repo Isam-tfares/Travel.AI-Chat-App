@@ -1,141 +1,174 @@
 # Travel.AI Chat Application
 
-Travel.AI is a conversational AI-based mobile application that allows users to interact with a chatbot for travel-related queries. The project is structured into two main parts: a backend powered by Flask and a frontend built with React Native.
+Travel.AI is a conversational AI-powered mobile application designed to assist users with travel-related queries using a chatbot. It combines a React Native frontend with a Flask-based RAG (Retrieval-Augmented Generation) backend that processes travel questions using a custom knowledge base (`data.pdf`).
 
 ---
 
-## Project Structure
+## 🗂️ Project Structure
 
 ```
 TravelChatApp/
 ├── backend/
 │   ├── app/
-│   │   ├── .env          # Environment variables for Flask
-│   │   ├── env/          # Virtual environment folder
-│   │   ├── app.py        # Main Flask application
-│   │   ├── requirements.txt # Python dependencies
-│   └── README.md         # Documentation for the backend
+│   │   ├── .env              # Environment variables for HuggingFace & Flask
+│   │   ├── data.pdf          # Custom travel knowledge base (RAG)
+│   │   ├── app.py            # Main Flask application using LangChain RAG
+│   │   ├── requirements.txt  # Python dependencies
+│   └── README.md             # Backend documentation
 ├── frontend/
 │   ├── TravelChatapp/
-│   │   ├── app/          # React Native application folder
-│   └── README.md         # Documentation for the frontend
-└── README.md             # Documentation for the entire project
+│   │   ├── app/              # React Native source code
+│   └── README.md             # Frontend documentation
+└── README.md                 # Global documentation (this file)
 ```
 
 ---
 
-## Prerequisites
+## ✅ Features
 
-- **Backend:**
-  - Python 3.x
-  - Flask
-  - Virtual environment (`venv`)
-
-- **Frontend:**
-  - Node.js
-  - React Native CLI
-  - Expo (if using Expo)
+- RAG-based QA system powered by `data.pdf`
+- Natural language queries handled by HuggingFace LLM (Mistral)
+- Real-time responses in a mobile interface
+- Custom travel corpus with FAISS vector search
 
 ---
 
-## Setup Instructions
-
-### Backend Setup
-
-1. Navigate to the `backend/app` directory:
-   ```bash
-   cd backend/app
-   ```
-
-2. Create a virtual environment and activate it:
-   ```bash
-   python3 -m venv env
-   source env/bin/activate   # For Linux/MacOS
-   env\Scripts\activate      # For Windows
-   ```
-
-3. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Configure the `.env` file:
-   - Add your environment-specific variables such as the API keys and other configurations. Example:
-     ```
-     FLASK_APP=app.py
-     FLASK_ENV=development
-     ```
-
-5. Start the Flask backend:
-   ```bash
-   flask run
-   ```
-
-   By default, the backend runs on `http://127.0.0.1:5000`.
-
----
-
-### Frontend Setup
-
-1. Navigate to the `frontend/TravelChatapp` directory:
-   ```bash
-   cd frontend/TravelChatapp
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the React Native app:
-   - If using Expo:
-     ```bash
-     npm start
-     ```
-   - If using a React Native CLI:
-     ```bash
-     npx react-native run-android   # For Android
-     npx react-native run-ios       # For iOS
-     ```
-
-4. Make sure the backend is running and the API URL in the frontend code points to the correct address (e.g., `http://127.0.0.1:5000`).
-
----
-
-## Usage
-
-1. Open the React Native application on your device or emulator.
-2. Begin a conversation with the AI assistant.
-3. The AI communicates with the Flask backend to provide intelligent responses.
-
----
-
-## File Descriptions
-
-### Backend (`backend/app`)
-- **`app.py`**: The main Flask application handling requests and responses.
-- **`.env`**: Configuration file containing environment-specific variables.
-- **`requirements.txt`**: List of Python dependencies required for the backend.
-
-### Frontend (`frontend/TravelChatapp`)
-- **`app/`**: Contains the React Native application files.
-
----
-
-## Dependencies
+## ⚙️ Prerequisites
 
 ### Backend
+- Python 3.x
 - Flask
-- Flask-Cors
-- Other dependencies as listed in `requirements.txt`
+- Virtualenv
+- `data.pdf` (must be placed inside `backend/app`)
+
+### Frontend
+- Node.js
+- React Native CLI
+- Expo (optional)
+
+---
+
+## 🚀 Setup Instructions
+
+### 🔧 Backend Setup
+
+```bash
+cd backend/app
+python3 -m venv env
+source env/bin/activate     # Linux/MacOS
+# OR
+env\Scripts\activate        # Windows
+
+pip install -r requirements.txt
+```
+
+Create a `.env` file with your Hugging Face token:
+```bash
+HUGGINGFACEHUB_API_TOKEN=your_token_here
+```
+
+Run the Flask server:
+```bash
+python app.py
+```
+Access: `http://127.0.0.1:5000/get_response`
+
+---
+
+### 📱 Frontend Setup
+
+```bash
+cd frontend/TravelChatapp
+npm install
+```
+
+Run the app:
+```bash
+npm start
+# or
+npx react-native run-android
+npx react-native run-ios
+```
+
+Update the API URL inside the frontend app to point to `http://127.0.0.1:5000` or your deployed backend.
+
+---
+
+## 🧠 How It Works
+
+1. User types a question in the mobile app
+2. The query is sent to the Flask backend
+3. The backend:
+   - Loads `data.pdf`
+   - Uses FAISS to retrieve relevant context
+   - Sends query + context to Mistral (via HuggingFace)
+   - Returns answer
+4. The frontend displays the AI-generated answer
+
+---
+
+## 📸 App Screenshots
+
+Images are located in the `frontend/assets/` folder.
+
+### Home (Suggestions)
+![Home](./frontend/assets/home.png)
+
+### New Chat Screen
+![New Chat](./frontend/assets/new_conv.png)
+
+### Typing Response
+![Typing](./frontend/assets/example_chat.png)
+
+### Empty Chats
+![Empty Chats](./frontend/assets/empty_chats.png)
+
+### Profile View
+![Profile](./frontend/assets/profile.png)
+
+---
+
+## 📦 Dependencies
+
+### Backend
+- Flask, Flask-Cors
+- langchain, langchain-community
+- FAISS
+- HuggingFace Hub
 
 ### Frontend
 - React Native
 - Gifted Chat
+- Axios
 - Expo (if used)
-- Other dependencies in `package.json`
 
 ---
 
+## 📬 API Endpoint
 
+### POST `/get_response`
+```json
+{
+  "user_query": "Quelle est la meilleure saison pour visiter Marrakech ?"
+}
+```
 
+Response:
+```json
+{
+  "response": "La meilleure saison pour visiter Marrakech est le printemps (mars à mai)..."
+}
+```
+
+---
+
+## ✨ Future Improvements
+- Add support for multiple document RAG
+- Multilingual support
+- Voice interface
+- Live weather/API integrations
+
+---
+
+## 👤 Author
+**Tfares Isam** – Engineering student in AI & Computer Science. Passionate about LLMs, conversational agents, and real-world AI applications.
