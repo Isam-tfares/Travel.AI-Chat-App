@@ -112,19 +112,19 @@ Update the API URL inside the frontend app to point to `http://127.0.0.1:5000` o
 Images are located in the `frontend/assets/` folder.
 
 ### Home (Suggestions)
-![Home](./frontend/assets/home.png)
+![Home](./assets/home.png)
 
 ### New Chat Screen
-![New Chat](./frontend/assets/new_conv.png)
+![New Chat](./assets/new_conv.png)
 
 ### Typing Response
-![Typing](./frontend/assets/example_chat.png)
+![Typing](./assets/example_chat.png)
 
 ### Empty Chats
-![Empty Chats](./frontend/assets/empty_chats.png)
+![Empty Chats](./assets/empty_chats.png)
 
 ### Profile View
-![Profile](./frontend/assets/profile.png)
+![Profile](./assets/profile.png)
 
 ---
 
